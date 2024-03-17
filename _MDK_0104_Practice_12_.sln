@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_MDK_0104_Practice_12_", "_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{B7144549-8FD4-4C93-82AE-2456AE5150F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B7144549-8FD4-4C93-82AE-2456AE5150F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7144549-8FD4-4C93-82AE-2456AE5150F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7144549-8FD4-4C93-82AE-2456AE5150F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

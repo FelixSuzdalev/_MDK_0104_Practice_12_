@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B20BB474-3888-47AC-8308-F13E37D782B6}</ProjectGuid>
+    <ProjectGuid>{0F7AAC4F-0B81-4443-8CCF-E1F7A359B61E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>_MDK_0104_Practice_12_</RootNamespace>
-    <AssemblyName>_MDK_0104_Practice_12_</AssemblyName>
+    <RootNamespace>WpfApp1</RootNamespace>
+    <AssemblyName>WpfApp1</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -98,10 +98,6 @@
     <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj">
       <Project>{b7144549-8fd4-4c93-82ae-2456ae5150f7}</Project>
       <Name>ConsoleApp1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfApp1\WpfApp1.csproj">
-      <Project>{0f7aac4f-0b81-4443-8ccf-e1f7a359b61e}</Project>
-      <Name>WpfApp1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
