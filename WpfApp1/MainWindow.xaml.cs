@@ -1,40 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using System.Diagnostics;
 using ConsoleApp1;
-using System.Data.SqlTypes;
-using System.Windows.Markup;
+using System.Threading;
 namespace WpfApp1
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-
-         public MainWindow()
+       const  string TITLE = "DataText";
+        public MainWindow()
         {
-           InitializeComponent();
-           Print();
+            InitializeComponent();
+            Loading();
         }
-          async public Task Print() 
-         {
-            string fileContent = await Task.Run(() => File.ReadAllText(@"..\..\..\ConsoleApp1\bin\Debug\data.txt"));
-            Text.Text = fileContent;
+        async void Loading()
+        {
+                int i = 0;
+            while (i != 100)
+            {
+                i++;
+                await Task.Delay(50);
+                this.Text.HorizontalContentAlignment = HorizontalAlignment.Center;
+                this.Text.VerticalContentAlignment = VerticalAlignment.Center;
+                this.Text.FontSize = 25;
+                Text.Text = "Загрузка = " + i + "%";
+                this.Title = TITLE + " - Загрузка = " + i + "%";
+            }
+            Print();
+        }
+        async void  Print(string TextOutput = "") 
+        {
+            await Task.Run(() =>
+            {
+                string[] FileData = File.ReadAllLines(@"..\..\..\ConsoleApp1\bin\Debug\data.txt");
+                TextOutput = string.Join(Environment.NewLine, FileData);
+            });
+            Text.TextAlignment = TextAlignment.Left;
+            this.Text.FontSize = 10;
+            this.Title = TITLE;
+            Text.Text = TextOutput;
         }
     }
 }

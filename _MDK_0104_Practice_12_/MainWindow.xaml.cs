@@ -12,12 +12,10 @@ using System.IO;
 using WpfApp1;
 using ConsoleApp1;
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace _MDK_0104_Practice_12_
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -25,7 +23,7 @@ namespace _MDK_0104_Practice_12_
         {
             InitializeComponent();
         }
-        private async void Button_Safe(object sender, RoutedEventArgs e)
+        private void Button_Safe(object sender, RoutedEventArgs e)
         {
             string NameSurname = Name.Text + " " + Surname.Text;
             string FileWay = @"..\..\..\ConsoleApp1\bin\Debug\data.txt";
@@ -33,13 +31,16 @@ namespace _MDK_0104_Practice_12_
             {
                 writer.WriteLine(NameSurname);
             }
-            var result = MessageBox.Show("Имя и фамилия сохранены.\nХотите отобразить все данные из файла?","Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            
+            var result = MessageBox.Show("Имя и фамилия сохранены.\nХотите отобразить все данные из файла?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
             if (result == MessageBoxResult.Yes)
             {
-                Print();
+                WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
+                mainWindow.Show();
             }
-            
+            else Close();
+            Close();
+
             /*if (result == MessageBoxResult.Yes)
             {
                 Button_Safe1.Background = Brushes.LightCoral;
@@ -47,11 +48,5 @@ namespace _MDK_0104_Practice_12_
                 mainWindow.Show();
             }*/
         }
-        
-        public void Print() 
-        {
-            WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
-            mainWindow.Show();
         }
     }
-}

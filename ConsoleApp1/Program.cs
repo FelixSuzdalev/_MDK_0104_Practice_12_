@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Program
+    public partial class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             FileStream FileText = new FileStream("data.txt", FileMode.OpenOrCreate);
             string lines = "Имя фамилия";
@@ -22,7 +23,6 @@ namespace ConsoleApp1
                         }
                     }
                 }
-            string[] data = File.ReadAllLines("data.txt");
             /*foreach (string line in data)
             {
                 Console.WriteLine(line);
