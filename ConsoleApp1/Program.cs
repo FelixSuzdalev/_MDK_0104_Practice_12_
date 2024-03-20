@@ -15,7 +15,7 @@ namespace ConsoleApp1
             string lines = "Имя фамилия";
                 using (StreamWriter Writer = new StreamWriter(FileText))
                 {
-                    for (int i = 0; i < 300; i++)
+                    for (int i = 0; i < 300000; i++)
                     {
                         {
                             Writer.WriteLine(lines + $" №{i + 1}");

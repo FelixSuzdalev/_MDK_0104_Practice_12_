@@ -26,12 +26,16 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
 
-        public MainWindow()
+         public MainWindow()
         {
            InitializeComponent();
-           Text.Text = File.ReadAllText(@"..\..\..\ConsoleApp1\bin\Debug\data.txt");
+           Print();
         }
-       
+          async public Task Print() 
+         {
+            string fileContent = await Task.Run(() => File.ReadAllText(@"..\..\..\ConsoleApp1\bin\Debug\data.txt"));
+            Text.Text = fileContent;
+        }
     }
 }
 
