@@ -99,10 +99,6 @@
       <Project>{b7144549-8fd4-4c93-82ae-2456ae5150f7}</Project>
       <Name>ConsoleApp1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WpfApp1\WpfApp1.csproj">
-      <Project>{0f7aac4f-0b81-4443-8ccf-e1f7a359b61e}</Project>
-      <Name>WpfApp1</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

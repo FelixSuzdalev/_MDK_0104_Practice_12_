@@ -9,21 +9,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using WpfApp1;
 using ConsoleApp1;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System;
 
 namespace _MDK_0104_Practice_12_
 {
     public partial class MainWindow : Window
     {
-
+        const string TITLE = "DataText";
         public MainWindow()
         {
             InitializeComponent();
         }
-        private void Button_Safe(object sender, RoutedEventArgs e)
+        private async void Button_Safe(object sender, RoutedEventArgs e)
         {
             string NameSurname = Name.Text + " " + Surname.Text;
             string FileWay = @"..\..\..\ConsoleApp1\bin\Debug\data.txt";
@@ -35,18 +35,47 @@ namespace _MDK_0104_Practice_12_
 
             if (result == MessageBoxResult.Yes)
             {
-                WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
-                mainWindow.Show();
+                this.Height = 500;
+                this.Output.IsHitTestVisible = true;
+                await Loading();
+                await Print();
             }
             else Close();
-            Close();
+        }
 
-            /*if (result == MessageBoxResult.Yes)
+        async Task Loading()
+        {
+            int i = 0;
+            while (i != 100)
             {
-                Button_Safe1.Background = Brushes.LightCoral;
-                WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
-                mainWindow.Show();
-            }*/
+                i++;
+                await Task.Delay(50);
+                this.Output.HorizontalContentAlignment = HorizontalAlignment.Center;
+                this.Output.VerticalContentAlignment = VerticalAlignment.Center;
+                this.Output.FontSize = 20;
+                Output.Text = "Загрузка = " + i + "%";
+                this.Title = TITLE + " - Загрузка = " + i + "%";
+            }
         }
+        async Task Print(string TextOutput = "")
+        {
+            await Task.Run(() =>
+            {
+                string[] FileData = File.ReadAllLines(@"..\..\..\ConsoleApp1\bin\Debug\data.txt");
+                TextOutput = string.Join(Environment.NewLine, FileData);
+            });
+            Output.TextAlignment = TextAlignment.Left;
+            this.Output.FontSize = 10;
+            this.Title = TITLE;
+            Output.Text = TextOutput;
         }
+        
+
+        /*if (result == MessageBoxResult.Yes)
+        {
+            Button_Safe1.Background = Brushes.LightCoral;
+            WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
+            mainWindow.Show();
+        }*/
     }
+}
