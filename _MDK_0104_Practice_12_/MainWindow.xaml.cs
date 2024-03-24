@@ -13,17 +13,21 @@ using ConsoleApp1;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace _MDK_0104_Practice_12_
 {
     public partial class MainWindow : Window
     {
         const string TITLE = "DataText";
+        bool loaded = false;
+        int i = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
-        private async void Button_Safe(object sender, RoutedEventArgs e)
+        private void Button_Safe(object sender, RoutedEventArgs e)
         {
             string NameSurname = Name.Text + " " + Surname.Text;
             string FileWay = @"..\..\..\ConsoleApp1\bin\Debug\data.txt";
@@ -37,45 +41,53 @@ namespace _MDK_0104_Practice_12_
             {
                 this.Height = 500;
                 this.Output.IsHitTestVisible = true;
-                await Loading();
-                await Print();
+
+                Loading();
+                Print();
             }
             else Close();
         }
 
-        async Task Loading()
+        async void Loading()
         {
-            int i = 0;
+            this.Output.HorizontalContentAlignment = HorizontalAlignment.Center;
+            this.Output.VerticalContentAlignment = VerticalAlignment.Center;
+            this.Output.FontSize = 20;
+
             while (i != 100)
             {
                 i++;
                 await Task.Delay(50);
-                this.Output.HorizontalContentAlignment = HorizontalAlignment.Center;
-                this.Output.VerticalContentAlignment = VerticalAlignment.Center;
-                this.Output.FontSize = 20;
+                if (loaded)
+                    break;
+
                 Output.Text = "Загрузка = " + i + "%";
                 this.Title = TITLE + " - Загрузка = " + i + "%";
             }
+            loaded = true;
+
         }
-        async Task Print(string TextOutput = "")
+
+        async void Print()
         {
+            string TextOutput = "";
             await Task.Run(() =>
             {
-                string[] FileData = File.ReadAllLines(@"..\..\..\ConsoleApp1\bin\Debug\data.txt");
-                TextOutput = string.Join(Environment.NewLine, FileData);
+
+                Thread.Sleep(5000);
+                TextOutput = File.ReadAllText(@"..\..\..\ConsoleApp1\bin\Debug\data.txt");
+                Dispatcher.Invoke(() =>
+                {
+                    loaded = true;
+                    this.Output.Text = TextOutput;
+
+                });
             });
+
             Output.TextAlignment = TextAlignment.Left;
             this.Output.FontSize = 10;
             this.Title = TITLE;
-            Output.Text = TextOutput;
-        }
-        
 
-        /*if (result == MessageBoxResult.Yes)
-        {
-            Button_Safe1.Background = Brushes.LightCoral;
-            WpfApp1.MainWindow mainWindow = new WpfApp1.MainWindow();
-            mainWindow.Show();
-        }*/
+        }
     }
 }
